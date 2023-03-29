@@ -14,10 +14,12 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Темы форума</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="">Новая тема</a></li>
+                        <li><a class="dropdown-item" href="/threads/create">Новая тема</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="/">Все темы</a></li>
-                        <li><a class="dropdown-item" href="">Мои темы</a></li>
+                        @auth
+                            <li><a class="dropdown-item" href="/?by={{ auth()->user()->name }}">Мои темы</a></li>
+                        @endauth
                         <li><a class="dropdown-item" href="">Популярные темы</a></li>
                         <li><a class="dropdown-item" href="">Темы с сообщениями</a></li>
                     </ul>
@@ -26,12 +28,13 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Рубрики</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="">Новая рубрика</a></li>
+                        <li><a class="dropdown-item" href="/channels/create">Новая рубрика</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="/">Рубрика</a></li>
-                        <li><a class="dropdown-item" href="">Рубрика</a></li>
-                        <li><a class="dropdown-item" href="">Рубрика</a></li>
-                        <li><a class="dropdown-item" href="">Рубрика</a></li>
+                        @forelse ($channels as $channel)
+                            <li><a class="dropdown-item" href="/threads/{{ $channel->slug }}">{{ $channel->name }}</a></li>
+                        @empty
+                            <li class="dropdown-item">Пока нет рубрик</li>
+                        @endforelse
                     </ul>
                 </li>
             </ul>
