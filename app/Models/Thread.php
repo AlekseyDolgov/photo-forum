@@ -18,6 +18,14 @@ class Thread extends Model
     protected static function boot()
     {
         parent::boot();
+
+        static::addGlobalScope('replyCount', function ($builder) {
+            $builder->withCount('replies');
+        });
+
+        static::deleting(function ($thread) {
+            $thread->replies()->delete();
+        });
     }
 
     public function path()
@@ -33,6 +41,16 @@ class Thread extends Model
     public function channel()
     {
         return $this->belongsTo(Channel::class);
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
+
+    public function addReply($reply)
+    {
+        $this->replies()->create($reply);
     }
 
     public function scopeFilter($query, ThreadFilters $filters)

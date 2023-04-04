@@ -20,8 +20,8 @@
                         @auth
                             <li><a class="dropdown-item" href="/?by={{ auth()->user()->name }}">Мои темы</a></li>
                         @endauth
-                        <li><a class="dropdown-item" href="">Популярные темы</a></li>
-                        <li><a class="dropdown-item" href="">Темы с сообщениями</a></li>
+                        <li><a class="dropdown-item" href="/?popular=1">Популярные темы</a></li>
+                        <li><a class="dropdown-item" href="/?answered=1">Темы с сообщениями</a></li>
                     </ul>
                 </li>
 

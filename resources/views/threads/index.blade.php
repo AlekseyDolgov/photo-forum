@@ -14,8 +14,8 @@
                                     </a>
                                 </div>
 
-                                <a class="text-decoration-none" href="">
-                                    Сообщений: 0
+                                <a class="text-decoration-none" href="{{ $thread->path() }}">
+                                    Сообщений: {{ $thread->replies_count }}
                                 </a>
                             </div>
                         </div>

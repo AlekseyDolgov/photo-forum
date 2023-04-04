@@ -35,6 +35,17 @@
                                 <textarea name="body" id="body" class="form-control"
                                           rows="8" required>{{ old('body') }}</textarea>
                             </div>
+                            <!-- фото-->
+                            <div class="col-md-6">
+                                <div class="form-group bmd-form-group is-focused file-input">
+                                    <label class="bmd-label-floating">Category Banner</label>
+                                    <input type="file" name="banner_img" class="form-control" accept="image">
+                                </div>
+                                @if ($errors->has('banner_img'))
+                                    <span class="errormsg text-danger">{{ $errors->first('banner_img') }} </span>
+                                @endif
+                            </div>
+
 
                             <div class="form-group mb-3">
                                 <button type="submit" class="btn btn-primary">Опубликовать</button>
