@@ -8,7 +8,7 @@
                     <div class="card-header">Создать новую Тему</div>
 
                     <div class="card-body">
-                        <form method="POST" action="/threads">
+                        <form method="POST" action="/threads" enctype="multipart/form-data">
                             {{ csrf_field() }}
 
                             <div class="form-group mb-3">
@@ -39,11 +39,11 @@
                             <div class="col-md-6">
                                 <div class="form-group bmd-form-group is-focused file-input">
                                     <label class="bmd-label-floating">Category Banner</label>
-                                    <input type="file" name="banner_img" class="form-control" accept="image">
+                                    <input type="file" name="image" class="form-control" accept=".jpg">
                                 </div>
-                                @if ($errors->has('banner_img'))
-                                    <span class="errormsg text-danger">{{ $errors->first('banner_img') }} </span>
-                                @endif
+{{--                                @if ($errors->has('banner_img'))--}}
+{{--                                    <span class="errormsg text-danger">{{ $errors->first('banner_img') }} </span>--}}
+{{--                                @endif--}}
                             </div>
 
 

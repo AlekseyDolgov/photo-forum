@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Channel;
+use App\Models\TheresdsPhoto;
 use App\Models\Thread;
 use Illuminate\Http\Request;
 use App\Filters\ThreadFilters;
@@ -45,7 +46,28 @@ class ThreadsController extends Controller
             'body' => request('body')
         ]);
 
-        return redirect($thread->path());
+        $validatedData = $request->validate([
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+
+        ]);
+        $save = new TheresdsPhoto;
+        $name = $request->file('image')->getClientOriginalName();
+
+        $path = $request->file('image')->store('public/images');
+//        dump($name);
+//        dd($path);
+        $save->name = $name;
+        $save->path = $path;
+        $save->save();
+        //$thread[] = ['name'=> $name, 'path' => $path];
+
+        echo '<pre>';
+        var_dump($thread);
+        echo '</pre>';
+        die();
+        return redirect($thread->path())->with('status', 'Изображение было загружено');
+
+        //return redirect($thread->path());
     }
 
     public function show($channel, Thread $thread)

@@ -22,7 +22,7 @@
                             @endcan
                         </div>
                     </div>
-
+                    <img src="" alt="">
                     <div class="card-body">
                         {{ $thread->body }}
                     </div>

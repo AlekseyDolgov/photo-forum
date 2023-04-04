@@ -23,10 +23,12 @@ return new class extends Migration
             $table->bigInteger('photographer_user_id')->unsigned();
             $table->bigInteger('categories_id')->unsigned();
             $table->bigInteger('comments_id')->unsigned();
+            $table->bigInteger('theresds_photos_id')->unsigned();
             $table->timestamps();
             $table->foreign('categories_id')->references('id')->on('category');
             $table->foreign('comments_id')->references('id')->on('comments');
             $table->foreign('photographer_user_id')->references('id')->on('users');
+            $table->foreign('theresds_photos_id')->references('id')->on('theresds_photos');
         });
     }
 
