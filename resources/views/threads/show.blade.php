@@ -27,12 +27,12 @@
                         {{ $thread->body }}
                     </div>
                 </div>
+
+                <img src="{{ asset('storage/' . $thread->image_path) }}" alt="{{ $thread->title }}" style="max-width: 100%; height: auto; margin: 20px 0;">
+                {{ $replies->links() }}
                 @foreach ($replies as $reply)
                     @include ('threads.reply')
                 @endforeach
-
-                {{ $replies->links() }}
-
                 @if (auth()->check())
                     <form method="POST" action="{{ $thread->path() . '/replies' }}">
                         {{ csrf_field() }}
@@ -48,7 +48,6 @@
                     <p class="text-center">Пожалуйста <a href="{{ route('login') }}">войдите</a> для того чтобы учавствовать в обсуждении.</p>
                 @endif
             </div>
-
             <div class="col-md-4">
                 <div class="card mb-3">
                     <div class="card-body">

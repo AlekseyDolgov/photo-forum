@@ -33,41 +33,27 @@ class ThreadsController extends Controller
 
     public function store(Request $request)
     {
+        // проверяет на ошибки
         $this->validate($request, [
             'title' => 'required',
             'body' => 'required',
-            'channel_id' => 'required|exists:channels,id'
+            'channel_id' => 'required|exists:channels,id',
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ]);
 
+        // Сохраняем изображение в хранилище приложения
+        $imagePath = $request->file('image')->store('images', 'public');
+
+        // добавляет в базу данных данные из формы
         $thread = Thread::create([
             'user_id' => auth()->id(),
             'channel_id' => request('channel_id'),
             'title' => request('title'),
-            'body' => request('body')
+            'body' => request('body'),
+            'image_path' => $imagePath,
         ]);
 
-        $validatedData = $request->validate([
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-
-        ]);
-        $save = new TheresdsPhoto;
-        $name = $request->file('image')->getClientOriginalName();
-
-        $path = $request->file('image')->store('public/images');
-//        dump($name);
-//        dd($path);
-        $save->name = $name;
-        $save->path = $path;
-        $save->save();
-        //$thread[] = ['name'=> $name, 'path' => $path];
-
-        echo '<pre>';
-        var_dump($thread);
-        echo '</pre>';
-        die();
-        return redirect($thread->path())->with('status', 'Изображение было загружено');
-
-        //return redirect($thread->path());
+        return redirect($thread->path());
     }
 
     public function show($channel, Thread $thread)
