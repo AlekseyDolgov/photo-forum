@@ -25,18 +25,22 @@
                     </ul>
                 </li>
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Рубрики</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/channels/create">Новая рубрика</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        @forelse ($channels as $channel)
-                            <li><a class="dropdown-item" href="/threads/{{ $channel->slug }}">{{ $channel->name }}</a></li>
-                        @empty
-                            <li class="dropdown-item">Пока нет рубрик</li>
-                        @endforelse
-                    </ul>
-                </li>
+                @auth
+                    @if(Auth::user()->status_prav)
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Рубрики</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/channels/create">Новая рубрика</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                @forelse ($channels as $channel)
+                                    <li><a class="dropdown-item" href="/threads/{{ $channel->slug }}">{{ $channel->name }}</a></li>
+                                @empty
+                                    <li class="dropdown-item">Пока нет рубрик</li>
+                                @endforelse
+                            </ul>
+                        </li>
+                    @endif
+                @endauth
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -78,3 +82,4 @@
         </div>
     </div>
 </nav>
+

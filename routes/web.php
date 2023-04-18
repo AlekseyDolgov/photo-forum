@@ -32,13 +32,6 @@ Route::delete('threads/{channel}/{thread}', [ThreadsController::class, 'destroy'
 Route::post('threads', [ThreadsController::class, 'store']);
 Route::get('threads/{channel}', [ThreadsController::class, 'index']);
 
-Route::get('channels/create', [ChannelsController::class, 'create']);
-Route::post('channels', [ChannelsController::class, 'store']);
-
-Route::get('/admin', function () {
-    return view('admin');
-})->middleware(['auth', 'verified'])->name('admin');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -52,6 +45,8 @@ Route::post('/replies/{reply}/favorites', [FavoritesController::class, 'store'])
 // Для админов
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+    Route::get('channels/create', [ChannelsController::class, 'create']);
+    Route::post('channels', [ChannelsController::class, 'store']);
 });
 
 require __DIR__.'/auth.php';
