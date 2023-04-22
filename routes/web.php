@@ -42,6 +42,9 @@ Route::post('/threads/{channel}/{thread}/replies', [RepliesController::class, 's
 Route::delete('/replies/{reply}', [RepliesController::class, 'destroy']);
 
 Route::post('/replies/{reply}/favorites', [FavoritesController::class, 'store']);
+
+Route::get('/profiles/{id}', [ProfileController::class], 'show')->name('profiles.show');
+
 // Для админов
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');

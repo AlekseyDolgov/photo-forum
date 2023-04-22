@@ -69,7 +69,9 @@
 
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li>
-                                <a class="dropdown-item" href="{{ route('admin') }}">Мой профиль</a>
+{{--                                <a class="dropdown-item" href="{{ route('profiles', ['id' => Auth::user()->id]) }}">Мой профиль</a>--}}
+                                <a class="dropdown-item" href="{{ url('/profiles/' . Auth::user()->id) }}">Мой профиль</a>
+{{--                                <a class="dropdown-item" href="{{ route('profiles.show', ['id' => Auth::user()->id]) }}">Мой профиль</a>--}}
                             </li>
                             <li>
                                 <a class="dropdown-item" href="{{ route('profile.edit') }}">Редактировать профиль</a>
