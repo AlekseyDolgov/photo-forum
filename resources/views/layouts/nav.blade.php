@@ -39,8 +39,20 @@
                                 @endforelse
                             </ul>
                         </li>
+                    @else
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Рубрики</a>
+                            <ul class="dropdown-menu">
+                                @forelse ($channels as $channel)
+                                    <li><a class="dropdown-item" href="/threads/{{ $channel->slug }}">{{ $channel->name }}</a></li>
+                                @empty
+                                    <li class="dropdown-item">Пока нет рубрик</li>
+                                @endforelse
+                            </ul>
+                        </li>
                     @endif
                 @endauth
+
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -57,10 +69,10 @@
 
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li>
-                                <a class="dropdown-item" href="{{ route('admin') }}">Админка</a>
+                                <a class="dropdown-item" href="{{ route('admin') }}">Мой профиль</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="{{ route('profile.edit') }}">Мой профиль</a>
+                                <a class="dropdown-item" href="{{ route('profile.edit') }}">Редактировать профиль</a>
                             </li>
 
                             <li>
