@@ -37,12 +37,6 @@ class ProfileController extends Controller
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
-    public function show($id)
-    {
-        $user = User::findOrFail($id);
-        return view('profiles.show', compact('user'));
-    }
-
     /**
      * Delete the user's account.
      */

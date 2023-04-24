@@ -6,6 +6,8 @@ use App\Http\Controllers\ThreadsController;
 use App\Http\Controllers\ChannelsController;
 use App\Http\Controllers\FavoritesController;
 use App\Http\Controllers\RepliesController;
+use App\Models\Profile;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,7 +45,15 @@ Route::delete('/replies/{reply}', [RepliesController::class, 'destroy']);
 
 Route::post('/replies/{reply}/favorites', [FavoritesController::class, 'store']);
 
-Route::get('/profiles/{id}', [ProfileController::class], 'show')->name('profiles.show');
+Route::get('/profiles/{id}', function ($id) {
+    $profile = Profile::findOrFail($id);
+    $user = DB::table('users')
+        ->join('profile', 'users.id', '=', 'profile.user_id')
+        ->select('users.*', 'profile.user_photo', 'profile.about_me', 'profile.last_vist', 'profile.photo_technic', 'profile.place_residence', 'profile.last_name', 'profile.patronymic')
+        ->where('users.id', $profile->id)
+        ->first();
+    return view('profiles.show', compact('user'));
+})->name('profiles.show');
 
 // Для админов
 Route::middleware(['auth', 'admin'])->group(function () {
