@@ -8,21 +8,22 @@
                     <div class="card-header">
                         <div class="level">
                             <span class="flex">
-                                <a href="">{{ $thread->creator->name }}</a> опубликовал:
+                                <a href="{{ url('/profiles/' . $thread->creator->id) }}">{{ $thread->creator->name }}</a> опубликовал:
                                 {{ $thread->title }}
                             </span>
+{{--для админов--}}
 
-                            @can ('update', $thread)
-                                <form action="{{ $thread->path() }}" method="POST">
-                                    {{ csrf_field() }}
-                                    {{ method_field('DELETE') }}
+                                @if(Auth::user()->status_prav || auth()->user()->id == $thread->user_id)
+                                    <form action="{{ $thread->path() }}" method="POST">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
 
-                                    <button type="submit" class="btn btn-link">Удалить тему</button>
-                                </form>
-                            @endcan
+                                        <button type="submit" class="btn btn-link">Удалить тему</button>
+                                    </form>
+                                @endif
+
                         </div>
                     </div>
-                    <img src="" alt="">
                     <div class="card-body">
                         {{ $thread->body }}
                     </div>
@@ -53,7 +54,7 @@
                     <div class="card-body">
                         <p>
                             Тема была опубликована {{ $thread->created_at->format('d-m-Y') }} в {{ $thread->created_at->format('H:i:s') }}
-                            Опубликовал: <a href="#">{{ $thread->creator->name }}</a>.
+                            Опубликовал: <a href="{{ url('/profiles/' . $thread->creator->id) }}">{{ $thread->creator->name }}</a>.
                             Сообщений в теме: {{ $thread->replies_count }}.
                         </p>
                     </div>

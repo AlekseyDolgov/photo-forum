@@ -2,7 +2,7 @@
     <div class="card-header">
         <div class="level">
             <div class="flex">
-                <a href="">
+                <a href="{{ url('/profiles/' . $reply->user_id) }}">
                     {{ $reply->owner->name }}
                 </a> написал {{ $reply->created_at->format('d-m-Y') }} в {{ $reply->created_at->format('H:i:s') }}
             </div>

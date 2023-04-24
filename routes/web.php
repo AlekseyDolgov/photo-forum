@@ -60,6 +60,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
     Route::get('channels/create', [ChannelsController::class, 'create']);
     Route::post('channels', [ChannelsController::class, 'store']);
+    Route::delete('threads/{channel}/{thread}', [ThreadsController::class, 'destroy']);
 });
 
 require __DIR__.'/auth.php';

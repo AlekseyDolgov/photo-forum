@@ -21,7 +21,7 @@
                             </div>
 
                             <div class="form-group mb-3">
-                                <label for="title">Алиас (псевдоним):</label>
+                                <label for="title">Директория (псевдоним):</label>
                                 <input type="text" class="form-control" id="slug" name="slug"
                                        value="{{ old('slug') }}" required>
                             </div>

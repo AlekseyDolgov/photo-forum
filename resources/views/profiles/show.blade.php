@@ -2,7 +2,6 @@
 
 {{--<h3>user-id: {{$profile->id}}</h3>--}}
 
-{{--<img src="{{ asset('storage/' . $profile->user_photo)}}" style="max-width: 100%; height: 125px; margin: 20px 0;">--}}
 
 {{--<p>Имя: {{ $user->name }}</p>--}}
 {{--<p>Почта: {{ $user->email }}</p>--}}
