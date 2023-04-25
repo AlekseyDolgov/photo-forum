@@ -10,7 +10,7 @@ class RepliesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth.comment')->only('store');
     }
     public function store($channelId, Thread $thread)
     {

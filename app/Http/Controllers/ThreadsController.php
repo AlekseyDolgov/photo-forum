@@ -64,17 +64,14 @@ class ThreadsController extends Controller
         ]);
     }
 
-    public function destroy($channel, Thread $thread)
+    public function destroy(Thread $thread)
     {
-        $this->authorize('update', $thread);
-
-        $thread->delete();
-
-        if (request()->wantsJson()) {
-            return response([], 204);
+        if (auth()->user()->isAdmin() || auth()->user()->id == $thread->user_id) {
+            $thread->delete();
+            return redirect('/');
+        } else {
+            abort(403, 'Unauthorized action.');
         }
-
-        return redirect('/');
     }
 
     protected function getThreads(Channel $channel, ThreadFilters $filters)

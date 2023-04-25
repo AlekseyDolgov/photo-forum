@@ -12,15 +12,13 @@
                                 {{ $thread->title }}
                             </span>
 {{--для админов--}}
-
-                                @if(Auth::user()->status_prav || auth()->user()->id == $thread->user_id)
-                                    <form action="{{ $thread->path() }}" method="POST">
-                                        {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
-
-                                        <button type="submit" class="btn btn-link">Удалить тему</button>
-                                    </form>
-                                @endif
+                            @if(auth()->check() && (auth()->user()->isAdmin() || auth()->user()->id == $thread->user_id))
+                                <form action="{{ $thread->path() }}" method="POST">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+                                    <button type="submit" class="btn btn-link">Удалить тему</button>
+                                </form>
+                            @endif
 
                         </div>
                     </div>
