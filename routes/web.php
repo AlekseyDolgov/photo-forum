@@ -49,7 +49,9 @@ Route::get('/profiles/{id}', function ($id) {
     $profile = Profile::findOrFail($id);
     $user = DB::table('users')
         ->join('profile', 'users.id', '=', 'profile.user_id')
-        ->select('users.*', 'profile.user_photo', 'profile.about_me', 'profile.last_vist', 'profile.photo_technic', 'profile.place_residence', 'profile.last_name', 'profile.patronymic')
+        ->select('users.*', 'profile.user_photo', 'profile.about_me',
+            'profile.last_vist', 'profile.photo_technic', 'profile.place_residence',
+            'profile.last_name', 'profile.patronymic', 'profile.Phone', 'profile.Site')
         ->where('users.id', $profile->id)
         ->first();
     return view('profiles.show', compact('user'));
