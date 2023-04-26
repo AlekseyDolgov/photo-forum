@@ -1,15 +1,5 @@
 @extends('layouts.site')
 
-{{--<p>Имя: {{ $user->name }}</p>--}}
-{{--<p>Почта: {{ $user->email }}</p>--}}
-{{--<img src="{{ asset('storage/' . $user->user_photo)}}" style="max-width: 100%; height: 125px; margin: 20px 0;">--}}
-{{--<p>{{ $user->user_photo }}</p>--}}
-{{--<p>{{ $user->about_me }}</p>--}}
-{{--<p>{{ $user->last_vist }}</p>--}}
-{{--<p>{{ $user->photo_technic }}</p>--}}
-{{--<p>{{ $user->place_residence }}</p>--}}
-{{--<p>{{ $user->last_name }}</p>--}}
-{{--<p>{{ $user->patronymic }}</p>--}}
 @section('content')
 
 <div class="container mt-5">
@@ -28,8 +18,8 @@
             <p>место проживания: {{ $user->place_residence }}</p>
             <p>дата рождения: {{ $user->last_vist }}</p>
             <p>номер телефона: {{$user->Phone}} </p>
-            <p>сайт: <a href="{{$user->Site}}">{{$user->Site}}</a></p>
-            <a href="#">статистика</a>
+            <a href="/statistics/{{ $user->id }}">статистика</a>
+
         </div>
     </div>
 </div>

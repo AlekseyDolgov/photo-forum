@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StatisticController;
 use App\Http\Controllers\ThreadsController;
 use App\Http\Controllers\ChannelsController;
 use App\Http\Controllers\FavoritesController;
@@ -65,5 +66,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     //Route::delete('admin/threads/{channel}/{thread}', [ThreadsController::class, 'destroy']);
 
 });
+
+// Статистика
+
+Route::get('/statistics/{user_id}', [StatisticController::class, 'index']);
 
 require __DIR__.'/auth.php';

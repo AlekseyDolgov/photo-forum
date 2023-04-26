@@ -64,7 +64,7 @@ class ThreadsController extends Controller
         ]);
     }
 
-    public function destroy(Thread $thread)
+    public function destroy($channelId, Thread $thread)
     {
         if (auth()->user()->isAdmin() || auth()->user()->id == $thread->user_id) {
             $thread->delete();
