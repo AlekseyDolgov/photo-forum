@@ -8,6 +8,7 @@ use App\Http\Controllers\ChannelsController;
 use App\Http\Controllers\FavoritesController;
 use App\Http\Controllers\RepliesController;
 use App\Models\Profile;
+use App\Http\Controllers\PostsController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -63,12 +64,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
     Route::get('channels/create', [ChannelsController::class, 'create']);
     Route::post('channels', [ChannelsController::class, 'store']);
-    //Route::delete('admin/threads/{channel}/{thread}', [ThreadsController::class, 'destroy']);
-
 });
 
 // Статистика
-
 Route::get('/statistics/{user_id}', [StatisticController::class, 'index']);
 
+// Посты
+Route::get('/posts/{id}', [PostsController::class, 'index']);
+Route::get('/post/create', [PostsController::class, 'create']);
+Route::get('/posts', [PostsController::class, 'store']);
 require __DIR__.'/auth.php';
