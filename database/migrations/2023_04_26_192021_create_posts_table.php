@@ -6,22 +6,31 @@ use Illuminate\Support\Facades\Schema;
 
 class CreatePostsTable extends Migration
 {
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->unsignedInteger('channel_id');
+            $table->foreign('channel_id')->references('id')->on('channels')->onDelete('cascade');
             $table->string('title');
-            $table->string('description');
-            $table->string('file_path');
-            $table->dateTime('post_created_at');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->text('body');
+            $table->unsignedInteger('user_id');
             $table->timestamps();
         });
     }
 
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
     public function down()
     {
         Schema::dropIfExists('posts');
     }
-};
+}

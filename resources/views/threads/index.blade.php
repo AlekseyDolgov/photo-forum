@@ -9,7 +9,7 @@
                         <div class="card-header">
                             <div class="level">
                                 <div class="flex lead">
-                                    <a class="text-decoration-none" href="{{ 'posts/' . $thread->id }}">
+                                    <a class="text-decoration-none" href="{{ 'posts' . $thread->path() }}">
                                         {{ $thread->title }}
                                     </a>
                                 </div>

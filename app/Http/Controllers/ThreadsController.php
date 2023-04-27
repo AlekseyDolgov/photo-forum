@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Channel;
-use App\Models\TheresdsPhoto;
 use App\Models\Thread;
 use Illuminate\Http\Request;
 use App\Filters\ThreadFilters;
