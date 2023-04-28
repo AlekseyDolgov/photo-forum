@@ -9,7 +9,9 @@ class PostsController extends Controller
 {
     public function index()
     {
-        return view('threads.posts.index');
+        $posts = Post::all();
+
+        return view('threads.posts.index', compact('posts'));
     }
 
     public function create(Request $request)

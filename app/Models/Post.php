@@ -15,7 +15,7 @@ class Post extends Model
     /* Активная загрузка (eager loading) */
     protected $with = ['channel'];
 
-    protected static function boot()
+  /*  protected static function boot()
     {
         parent::boot();
 
@@ -26,7 +26,7 @@ class Post extends Model
         static::deleting(function ($post) {
             $post->replies()->delete();
         });
-    }
+    } */
 
     public function path()
     {
@@ -43,18 +43,26 @@ class Post extends Model
         return $this->belongsTo(Channel::class);
     }
 
-    public function replies()
+   /* public function replies()
     {
         return $this->hasMany(Reply::class);
-    }
+    }*/
 
-    public function addReply($reply)
+   /* public function addReply($reply)
     {
         $this->replies()->create($reply);
-    }
+    }*/
 
     public function scopeFilter($query, PostFilters $filters)
     {
         return $filters->apply($query);
+    }
+
+    public function imageIsSmaller()
+    {
+        $image_path = storage_path('app/public/' . $this->image_path);
+        $image_size = getimagesize($image_path);
+
+        return $image_size[0] < 400 || $image_size[1] < 400;
     }
 }
