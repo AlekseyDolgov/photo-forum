@@ -72,5 +72,6 @@ Route::get('/statistics/{user_id}', [StatisticController::class, 'index']);
 // Посты
 Route::get('/posts/{channel}', [PostsController::class, 'index']);
 Route::get('/post/create', [PostsController::class, 'create']);
-Route::post('/posts', [PostsController::class, 'store']);
+Route::post('posts', [PostsController::class, 'store']);
+
 require __DIR__.'/auth.php';

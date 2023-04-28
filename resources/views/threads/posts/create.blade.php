@@ -19,14 +19,14 @@
 
                             <div class="form-group mb-3">
                                 <label for="body">Описание:</label>
-                                <textarea name="description" id="description" class="form-control"
-                                          rows="8" required>{{ old('description') }}</textarea>
+                                <textarea name="body" id="body" class="form-control"
+                                          rows="8" required>{{ old('body') }}</textarea>
                             </div>
                             <!-- фото-->
                             <div class="form-group">
                                 <div class="form-group bmd-form-group is-focused file-input">
                                     <label for="photo">Выберите фотографию:</label>
-                                    <input type="file" name="posts" id="posts" class="form-control-file">
+                                    <input type="file" name="image_path" id="image_path" class="form-control-file">
                                     @error('photo')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
@@ -36,6 +36,9 @@
                                 {{--                                @endif--}}
                             </div>
 
+                            @foreach ($channels as $channel)
+                                <input type="hidden" name="channel_id" value="{{ $channel->id }}">
+                            @endforeach
 
                             <div class="form-group mb-3">
                                 <button type="submit" class="btn btn-primary">Опубликовать</button>
