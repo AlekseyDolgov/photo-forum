@@ -35,10 +35,7 @@
                                 {{--                                    <span class="errormsg text-danger">{{ $errors->first('banner_img') }} </span>--}}
                                 {{--                                @endif--}}
                             </div>
-
-                            @foreach ($channels as $channel)
-                                <input type="hidden" name="channel_id" value="{{ $channel->id }}">
-                            @endforeach
+                            <input type="hidden" name="channel_id" value="{{ $_GET['channel'] }}">
 
                             <div class="form-group mb-3">
                                 <button type="submit" class="btn btn-primary">Опубликовать</button>

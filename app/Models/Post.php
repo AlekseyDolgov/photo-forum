@@ -15,22 +15,9 @@ class Post extends Model
     /* Активная загрузка (eager loading) */
     protected $with = ['channel'];
 
-  /*  protected static function boot()
+    public function path($get)
     {
-        parent::boot();
-
-        static::addGlobalScope('replyCount', function ($builder) {
-            $builder->withCount('replies');
-        });
-
-        static::deleting(function ($post) {
-            $post->replies()->delete();
-        });
-    } */
-
-    public function path()
-    {
-        return "/posts/{$this->channel->slug}";
+        return "/posts/{$this->channel->slug}?channel=$get";
     }
 
     public function creator()
@@ -42,17 +29,6 @@ class Post extends Model
     {
         return $this->belongsTo(Channel::class);
     }
-
-   /* public function replies()
-    {
-        return $this->hasMany(Reply::class);
-    }*/
-
-   /* public function addReply($reply)
-    {
-        $this->replies()->create($reply);
-    }*/
-
     public function scopeFilter($query, PostFilters $filters)
     {
         return $filters->apply($query);

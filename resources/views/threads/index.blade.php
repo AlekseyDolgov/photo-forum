@@ -8,8 +8,8 @@
                     <div class="card mb-3">
                         <div class="card-header">
                             <div class="level">
-                                <div class="flex lead">
-                                    <a class="text-decoration-none" href="{{ 'posts' . $thread->path() }}">
+                                <div class="flex lead"> {{--"{{'posts' . $thread->path()}}" --}}
+                                    <a class="text-decoration-none" href="{{'posts' . $thread->path()}}?channel={{$thread->channel_id}}">
                                         {{ $thread->title }}
                                     </a>
                                 </div>

@@ -17,7 +17,6 @@ return new class extends Migration
             $table->unsignedInteger('channel_id');
             $table->string('title');
             $table->text('body');
-            $table->string('image_path')->nullable();
             $table->timestamps();
         });
     }

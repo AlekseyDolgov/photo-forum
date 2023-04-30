@@ -7,16 +7,16 @@ use App\Models\Post;
 
 class PostsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::all();
-
-        return view('threads.posts.index', compact('posts'));
+        $chanel_id = $request->get('channel');
+        $posts = Post::where('channel_id', $chanel_id)->get();
+        return view('posts.index', compact('posts'));
     }
 
     public function create(Request $request)
     {
-        return view('threads.posts.create');
+        return view('posts.create');
     }
 
     public function store(Request $request)
@@ -40,6 +40,6 @@ class PostsController extends Controller
             'image_path' => $imagePath,
         ]);
         // Редирект на страницу нового поста
-        return redirect($post->path());
+        return redirect($post->path($post['channel_id']));
     }
 }
