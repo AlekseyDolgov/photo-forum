@@ -29,6 +29,12 @@ class Post extends Model
     {
         return $this->belongsTo(Channel::class);
     }
+
+    public function pathUrl()
+    {
+        //?channel=$get
+        return "posts/{$this->channel->slug}";
+    }
     public function scopeFilter($query, PostFilters $filters)
     {
         return $filters->apply($query);
@@ -40,5 +46,15 @@ class Post extends Model
         $image_size = getimagesize($image_path);
 
         return $image_size[0] < 400 || $image_size[1] < 400;
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
+
+    public function addReply($reply)
+    {
+        $this->replies()->create($reply);
     }
 }

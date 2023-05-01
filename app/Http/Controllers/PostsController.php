@@ -18,7 +18,13 @@ class PostsController extends Controller
     {
         return view('posts.create');
     }
-
+    public function show(Request $request, Post $replies)
+    {
+        $post_id = $request->get('post');
+        $post = Post::find($post_id);
+        //$replies = $replies->replies()->paginate(20);
+        return view('posts.show', compact('post'/*, 'replies'*/));
+    }
     public function store(Request $request)
     {
         // Проверка данных формы на ошибки
