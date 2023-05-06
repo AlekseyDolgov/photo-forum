@@ -18,8 +18,8 @@
             <p>место проживания: {{ $user->place_residence }}</p>
             <p>дата рождения: {{ $user->last_vist }}</p>
             <p>номер телефона: {{$user->Phone}} </p>
+            <a href="/profiles/{{Auth::user()->id}}/add_info">добавить доп. информацию</a><br>
             <a href="/statistics/{{ $user->id }}">статистика</a>
-
         </div>
     </div>
 </div>
