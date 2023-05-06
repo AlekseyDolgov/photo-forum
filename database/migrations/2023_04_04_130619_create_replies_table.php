@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('replies', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('thread_id');
+            $table->unsignedInteger('post_id');
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
             $table->integer('user_id');
+            $table->integer('thread_id');
             $table->text('body');
             $table->timestamps();
         });

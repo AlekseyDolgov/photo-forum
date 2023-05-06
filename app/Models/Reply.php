@@ -12,7 +12,7 @@ class Reply extends Model
     protected $guarded = [];
     /* Активная загрузка (eager loading)  */
     protected $with = ['owner', 'favorites'];
-
+    protected $fillable = ['user_id', 'post_id', 'body', 'thread_id'];
     public function owner()
     {
         return $this->belongsTo(User::class, 'user_id');

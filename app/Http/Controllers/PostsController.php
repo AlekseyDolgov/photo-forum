@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reply;
 use Illuminate\Http\Request;
 use App\Models\Post;
 
@@ -18,12 +19,12 @@ class PostsController extends Controller
     {
         return view('posts.create');
     }
-    public function show(Request $request, Post $replies)
+    public function show(Request $request)
     {
         $post_id = $request->get('post');
         $post = Post::find($post_id);
-        //$replies = $replies->replies()->paginate(20);
-        return view('posts.show', compact('post'/*, 'replies'*/));
+        $replies = Reply::where('post_id', $post_id)->get();
+        return view('posts.show', compact('post', 'replies'));
     }
     public function store(Request $request)
     {

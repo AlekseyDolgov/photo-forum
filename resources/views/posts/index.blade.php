@@ -4,7 +4,6 @@
     <div class="bg-dark" style="height: 20px;">
         <div class="container py-2 d-flex justify-content-end" style="position: relative; top: -25px;">
             <a href="/post/create/?channel={{$_GET['channel']}}" class="btn btn-primary btn-sm" type="button">Добавить пост</a>
-            {{--            <a href="{{route('posts.create', ['channel' => $_GET['channel']])}}" class="btn btn-primary btn-sm" type="button">Добавить пост</a>--}}
         </div>
     </div>
     <div class="container my-4">

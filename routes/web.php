@@ -41,8 +41,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-Route::post('/threads/{channel}/{thread}/replies', [RepliesController::class, 'store']);
+// Коментарии
+Route::post('/replies/', [RepliesController::class, 'store']);
 Route::delete('/replies/{reply}', [RepliesController::class, 'destroy']);
 
 Route::post('/replies/{reply}/favorites', [FavoritesController::class, 'store']);

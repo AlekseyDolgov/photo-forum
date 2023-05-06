@@ -25,21 +25,33 @@
                     </div>
                 </div>
                 <img src="{{ asset('storage/' . $post->image_path) }}" alt="{{ $post->title }}" style="max-width: 100%; height: auto; margin: 20px 0;">
-{{--                {{ $replies->links() }}--}}
-                {{--                @foreach ($replies as $reply)--}}
-                {{--                    @include ('threads.reply')--}}
-                {{--                @endforeach--}}
+
+                @foreach ($replies->sortByDesc('id') as $reply)
+                    @include ('posts.reply')
+                @endforeach
+
                 @if (auth()->check())
-                    <form method="POST" action="{{ $post->path($_GET['post']) . '/replies' }}">
+                    <form method="POST" action="/replies">
                         {{ csrf_field() }}
 
                         <div class="form-group mb-3">
                             <textarea name="body" id="body" class="form-control" placeholder="Есть что сообщить?"
                                       rows="5"></textarea>
+                            <input type="hidden" name="post_id" value="{{$_GET['post']}}">
+                            <input type="hidden" name="thread_id" value="0">
                         </div>
 
                         <button type="submit" class="btn btn-primary">Добавить</button>
                     </form>
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                 @else
                     <p class="text-center">Пожалуйста <a href="{{ route('login') }}">войдите</a> для того чтобы учавствовать в обсуждении.</p>
                 @endif
