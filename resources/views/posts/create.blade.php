@@ -35,7 +35,8 @@
                                 {{--                                    <span class="errormsg text-danger">{{ $errors->first('banner_img') }} </span>--}}
                                 {{--                                @endif--}}
                             </div>
-                            <input type="hidden" name="channel_id" value="{{ $_GET['channel'] }}">
+
+                            <input type="hidden" name="thread_id" value="{{ $_GET['post'] }}">
 
                             <div class="form-group mb-3">
                                 <button type="submit" class="btn btn-primary">Опубликовать</button>

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Channel;
+//use App\Models\Channel;
 use App\Models\Thread;
 use Illuminate\Http\Request;
 use App\Filters\ThreadFilters;
@@ -14,13 +14,9 @@ class ThreadsController extends Controller
         $this->middleware('auth')->except(['index', 'show']);
     }
 
-    public function index(Channel $channel, ThreadFilters $filters)
+    public function index()
     {
-        $threads = $this->getThreads($channel, $filters);
-
-        if (request()->wantsJson()) {
-            return $threads;
-        }
+        $threads = Thread::all();
 
         return view('threads.index', compact('threads'));
     }
@@ -36,13 +32,12 @@ class ThreadsController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'body' => 'required',
-            'channel_id' => 'required|exists:channels,id',
+            'slug' => 'required',
         ]);
 
         // добавляет в базу данных данные из формы
         $thread = Thread::create([
-            'user_id' => auth()->id(),
-            'channel_id' => request('channel_id'),
+            'slug' => request('slug'),
             'title' => request('title'),
             'body' => request('body'),
         ]);
@@ -50,7 +45,7 @@ class ThreadsController extends Controller
         return redirect('/');
     }
 
-    public function show($channel, Thread $thread)
+    public function show(Thread $thread)
     {
         return view('threads.show', [
             'thread' => $thread,
@@ -58,7 +53,7 @@ class ThreadsController extends Controller
         ]);
     }
 
-    public function destroy($channelId, Thread $thread)
+    public function destroy(Thread $thread)
     {
         if (auth()->user()->isAdmin() || auth()->user()->id == $thread->user_id) {
             $thread->delete();
@@ -68,7 +63,7 @@ class ThreadsController extends Controller
         }
     }
 
-    protected function getThreads(Channel $channel, ThreadFilters $filters)
+    /*protected function getThreads(Channel $channel, ThreadFilters $filters)
     {
         $threads = Thread::latest()->filter($filters);
         if ($channel->exists) {
@@ -76,5 +71,5 @@ class ThreadsController extends Controller
         }
 
         return $threads->get();
-    }
+    }*/
 }

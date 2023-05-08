@@ -11,7 +11,7 @@
                                 <a href="{{ url('/profiles/' . $thread->creator->id) }}">{{ $thread->creator->name }}</a> опубликовал:
                                 {{ $thread->title }}
                             </span>
-{{--для админов--}}
+                            {{--для админов--}}
                             @if(auth()->check() && (auth()->user()->isAdmin() || auth()->user()->id == $thread->user_id))
                                 <form action="{{ $thread->path() }}" method="POST">
                                     {{ csrf_field() }}

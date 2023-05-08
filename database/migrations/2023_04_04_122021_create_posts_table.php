@@ -15,8 +15,8 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('channel_id');
-            $table->foreign('channel_id')->references('id')->on('channels')->onDelete('cascade');
+            $table->unsignedInteger('thread_id');
+            $table->foreign('thread_id')->references('id')->on('threads')->onDelete('cascade');
             $table->string('title');
             $table->text('body');
             $table->unsignedInteger('user_id');

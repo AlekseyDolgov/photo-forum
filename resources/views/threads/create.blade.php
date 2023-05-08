@@ -10,19 +10,13 @@
                     <div class="card-body">
                         <form method="POST" action="/threads" enctype="multipart/form-data">
                             {{ csrf_field() }}
-
                             <div class="form-group mb-3">
-                                <label for="channel_id">Рубрики:</label>
-                                <select name="channel_id" id="channel_id" class="form-control" required>
-                                    <option value="">Выберите одну из следующих...</option>
-
-                                    @foreach ($channels as $channel)
-                                        <option value="{{ $channel->id }}" {{ old('channel_id') == $channel->id ? 'selected' : '' }}>
-                                            {{ $channel->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
+                                <label for="title">Директория (псевдоним):</label>
+                                <input type="text" class="form-control" id="slug" name="slug"
+                                       value="{{ old('slug') }}" required>
                             </div>
+
+
 
                             <div class="form-group mb-3">
                                 <label for="title">Заголовок:</label>

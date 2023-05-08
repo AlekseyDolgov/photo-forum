@@ -12,12 +12,14 @@ class Post extends Model
 
     protected $guarded = [];
 
-    /* Активная загрузка (eager loading) */
-    protected $with = ['channel'];
-
     public function path($get)
     {
-        return "/posts/{$this->channel->slug}?channel=$get";
+        return route('posts.index', [$this->thread->slug, 'id' => $get]);
+    }
+
+    public function thread()
+    {
+        return $this->belongsTo(Thread::class);
     }
 
     public function creator()
@@ -25,15 +27,14 @@ class Post extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function channel()
+    public function threads()
     {
-        return $this->belongsTo(Channel::class);
+        return $this->belongsTo(Thread::class);
     }
 
     public function pathUrl()
     {
-        //?channel=$get
-        return "posts/{$this->channel->slug}";
+        return "posts/{$this->thread->slug}";
     }
     public function scopeFilter($query, PostFilters $filters)
     {

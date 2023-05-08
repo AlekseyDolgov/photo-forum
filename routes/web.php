@@ -70,9 +70,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
 Route::get('/statistics/{user_id}', [StatisticController::class, 'index']);
 
 // Посты
-Route::any('/posts/{channel}', [PostsController::class, 'index']);
-Route::any('store/posts/{channel}', [PostsController::class, 'show'])->name('posts.show');
-Route::get('/post/create/', [PostsController::class, 'create']);
-Route::post('posts', [PostsController::class, 'store']);
+//Route::any('/posts/{channel}', [PostsController::class, 'index']);
+Route::any('/store/posts/{slug}', [PostsController::class, 'show'])->name('posts.show');
+Route::any('/create/', [PostsController::class, 'create']);
+Route::any('posts', [PostsController::class, 'store']);
+
+Route::get('/posts/{slug}', [PostsController::class, 'index'])->name('posts.index');
+
 
 require __DIR__.'/auth.php';

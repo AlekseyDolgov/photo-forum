@@ -9,14 +9,14 @@
                         <div class="card-header">
                             <div class="level">
                                 <div class="flex lead"> {{--"{{'posts' . $thread->path()}}" --}}
-                                    <a class="text-decoration-none" href="{{'posts' . $thread->path()}}?channel={{$thread->channel_id}}">
+                                    <a class="text-decoration-none" href="posts/{{$thread->path()}}">
                                         {{ $thread->title }}
                                     </a>
                                 </div>
 
-                                <a class="text-decoration-none" href="{{ $thread->path() }}">
-                                    Сообщений: {{ $thread->replies_count }}
-                                </a>
+                                {{--                                <a class="text-decoration-none" href="{{ $thread->path() }}">--}}
+                                {{--                                    Сообщений: {{ $thread->replies_count }}--}}
+                                {{--                                </a>--}}
                             </div>
                         </div>
 

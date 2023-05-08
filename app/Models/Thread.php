@@ -13,7 +13,6 @@ class Thread extends Model
     protected $guarded = [];
 
     /* Активная загрузка (eager loading)  */
-    protected $with = ['channel'];
 
     protected static function boot()
     {
@@ -30,7 +29,7 @@ class Thread extends Model
 
     public function path()
     {
-        return "/{$this->channel->slug}";
+        return "{$this->slug}?id={$this->id}";
     }
 
     public function creator()
