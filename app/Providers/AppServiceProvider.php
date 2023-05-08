@@ -22,10 +22,4 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
-    {
-        // Закоментировать если не будет проходить миграция
-        $channels = Channel::all();
-        \View::share('channels', $channels);
-    }
 }
