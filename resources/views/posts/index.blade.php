@@ -1,9 +1,13 @@
 @extends('layouts.site')
 
 @section('content')
-    <div class="bg-dark" style="height: 20px;">
-        <div class="container py-2 d-flex justify-content-end" style="position: relative; top: -25px;">
-            <a href="/create/?post={{$_GET['id']}}" class="btn btn-primary btn-sm" type="button">Добавить пост</a>
+    <div class="bg-dark fixed-bottom" style="height: 50px;">
+        <div class="container py-2 d-flex justify-content-end">
+            @if (auth()->check())
+                <a href="/create/?post={{$_GET['id']}}" class="btn btn-primary btn-sm" type="button">Добавить пост</a>
+            @else
+                <p class="text-center" style="color: #9ca3af">Пожалуйста <a href="{{ route('login') }}">войдите</a>, чтобы публиковать фотографии.</p>
+            @endif
         </div>
     </div>
     <div class="container my-4">

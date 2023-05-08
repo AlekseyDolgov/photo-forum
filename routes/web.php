@@ -62,8 +62,6 @@ Route::get('/profiles/{id}', function ($id) {
 // Для админов
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-    Route::get('channels/create', [ChannelsController::class, 'create']);
-    Route::post('channels', [ChannelsController::class, 'store']);
 });
 
 // Статистика
