@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
-use App\Models\Profile;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -57,32 +56,5 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
-    }
-
-    public function addInfo()
-    {
-        return view('profiles.add_info');
-    }
-
-    public function add(Request $request)
-    {
-        // валидация данных из формы
-        // получение текущего пользователя
-        $user = Auth::user();
-
-        // поиск записи в таблице профиля текущего пользователя
-        $profile = Profile::where('user_id', $user->id)->first();
-
-        // обновление данных профиля
-        $profile->last_name = $request->input('last_name');
-        $profile->patronymic = $request->input('patronymic');
-        $profile->place_residence = $request->input('city');
-        $profile->photo_technic = $request->input('photo-technica');
-        $profile->birthday = $request->input('birthday');
-        $profile->phone = $request->input('phone');
-        $profile->save();
-        dd($profile);
-        // перенаправление на страницу профиля
-        return redirect('/profile');
     }
 }

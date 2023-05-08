@@ -58,8 +58,6 @@ Route::get('/profiles/{id}', function ($id) {
         ->first();
     return view('profiles.show', compact('user'));
 })->name('profiles.show');
-Route::get('profiles/{id}/add_info', [ProfileController::class, 'addInfo']);
-Route::post('profiles/{id}/add', [ProfileController::class, 'add']);
 
 // Для админов
 Route::middleware(['auth', 'admin'])->group(function () {
