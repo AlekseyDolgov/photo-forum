@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\Reply;
 use App\Models\Thread;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RepliesController extends Controller
 {
@@ -34,6 +35,14 @@ class RepliesController extends Controller
     {
         $this->authorize('update', $reply);
         $reply->delete();
+        return back();
+    }
+
+    public function delete(Request $request)
+    {
+        $id = $request->id;
+        $sql = "DELETE FROM replies WHERE `replies`.`id` = {$id}";
+        DB::statement($sql);
         return back();
     }
 }

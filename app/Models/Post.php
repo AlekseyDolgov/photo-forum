@@ -37,6 +37,11 @@ class Post extends Model
         return "posts/{$this->thread->slug}";
     }
 
+    public function deleteReplay($get)
+    {
+        return "replies/delete/{$this->thread->slug}/?id=$get";
+    }
+
     public function deleteUrl($get)
     {
         return "delete/{$this->thread->slug}/?id=$get";

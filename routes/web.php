@@ -43,7 +43,7 @@ Route::middleware('auth')->group(function () {
 });
 // Коментарии
 Route::post('/replies/', [RepliesController::class, 'store']);
-Route::delete('/replies/{reply}', [RepliesController::class, 'destroy']);
+Route::delete('/store/posts/replies/delete/', [RepliesController::class, 'delete']);
 
 Route::post('/replies/{reply}/favorites', [FavoritesController::class, 'store']);
 
