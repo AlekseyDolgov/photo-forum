@@ -36,6 +36,12 @@ class Post extends Model
     {
         return "posts/{$this->thread->slug}";
     }
+
+    public function deleteUrl($get)
+    {
+        return "delete/{$this->thread->slug}/?id=$get";
+    }
+
     public function scopeFilter($query, PostFilters $filters)
     {
         return $filters->apply($query);

@@ -72,6 +72,7 @@ Route::get('/statistics/{user_id}', [StatisticController::class, 'index']);
 Route::any('/store/posts/{slug}', [PostsController::class, 'show'])->name('posts.show');
 Route::any('/create/', [PostsController::class, 'create']);
 Route::any('posts', [PostsController::class, 'store']);
+Route::delete('/store/posts/delete/{slug}', [PostsController::class, 'delete']);
 
 Route::get('/posts/{slug}', [PostsController::class, 'index'])->name('posts.index');
 

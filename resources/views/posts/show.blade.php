@@ -12,9 +12,10 @@
                                 {{ $post->title }}
                             </span>
                             @if(auth()->check() && (auth()->user()->isAdmin() || auth()->user()->id == $post->user_id))
-                                <form action="{{ $post->path($_GET['post']) }}" method="POST">
-                                    {{ csrf_field() }}
-                                    {{ method_field('DELETE') }}
+                                <form action="{{ $post->deleteUrl($_GET['post']) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="hidden" name="id" value="{{ $_GET['post'] }}">
                                     <button type="submit" class="btn btn-link">Удалить тему</button>
                                 </form>
                             @endif

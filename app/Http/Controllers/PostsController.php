@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Reply;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Support\Facades\DB;
 
 class PostsController extends Controller
 {
@@ -48,11 +49,15 @@ class PostsController extends Controller
             'body' => $request->body,
             'image_path' => $imagePath,
         ]);
-        // Редирект на страницу нового поста
-        //$url = "posts/" . $post->path($post['thread_id']);
-        //$url = $post->path($post['thread_id']);
-        //dd($url);
-        //return redirect()->route('posts.index', ['id' => $post['thread_id']]);
+
         return redirect( $post->path($post['thread_id']));
+    }
+
+    public function delete(Request $request)
+    {
+        $id = $request->id;
+        $sql = "DELETE FROM posts WHERE `posts`.`id` = {$id}";
+        DB::statement($sql);
+        return redirect('/');
     }
 }
