@@ -29,6 +29,7 @@ Route::get('/', function () {
 */
 
 Route::get('/', [ThreadsController::class, 'index']);
+Route::delete('delete', [ThreadsController::class, 'delete']);
 
 Route::get('threads/create', [ThreadsController::class, 'create']);
 Route::get('threads/{channel}/{thread}', [ThreadsController::class, 'show']);
@@ -78,3 +79,4 @@ Route::get('/posts/{slug}', [PostsController::class, 'index'])->name('posts.inde
 
 
 require __DIR__.'/auth.php';
+

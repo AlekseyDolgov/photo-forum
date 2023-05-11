@@ -12,7 +12,16 @@
                                     <a class="text-decoration-none" href="posts/{{$thread->path()}}">
                                         {{ $thread->title }}
                                     </a>
+                                    @if(auth()->check() && (auth()->user()->isAdmin()))
+                                        <form action="delete" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="hidden" name="id" value="{{$thread->id}}">
+                                            <button type="submit" class="btn btn-link">Удалить тему</button>
+                                        </form>
+                                    @endif
                                 </div>
+
 
                                 {{--                                <a class="text-decoration-none" href="{{ $thread->path() }}">--}}
                                 {{--                                    Сообщений: {{ $thread->replies_count }}--}}

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Thread;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ThreadsController extends Controller
 {
@@ -51,6 +52,14 @@ class ThreadsController extends Controller
         ]);
     }
 
+    public function delete(Request $request)
+    {
+        $id = $request->id;
+        $sql = "DELETE FROM threads WHERE `threads`.`id` = {$id}";
+        DB::statement($sql);
+        return redirect('/');
+    }
+
     public function destroy(Thread $thread)
     {
         if (auth()->user()->isAdmin() || auth()->user()->id == $thread->user_id) {
@@ -62,3 +71,4 @@ class ThreadsController extends Controller
     }
 
 }
+
