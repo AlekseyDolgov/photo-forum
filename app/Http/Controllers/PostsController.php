@@ -48,6 +48,7 @@ class PostsController extends Controller
             'title' => $request->title,
             'body' => $request->body,
             'image_path' => $imagePath,
+            'comment_count' => intval($request->comment_count)
         ]);
 
         return redirect( $post->path($post['thread_id']));

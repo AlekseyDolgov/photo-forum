@@ -12,21 +12,7 @@
             <!-- Left Side Of Navbar -->
                 @auth
                     @if(Auth::user()->status_prav)
-                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Темы форума</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/threads/create">Новая тема</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="/">Все темы</a></li>
-                                @auth
-                                    <li><a class="dropdown-item" href="/?by={{ auth()->user()->name }}">Мои темы</a></li>
-                                @endauth
-                                <li><a class="dropdown-item" href="/?popular=1">Популярные темы</a></li>
-                                <li><a class="dropdown-item" href="/?answered=1">Темы с сообщениями</a></li>
-                            </ul>
-                        </li>
-                    </ul>
+                        <a class="btn btn-outline-secondary" href="/threads/create">Новая тема</a>
                     @endif
                 @endauth
 

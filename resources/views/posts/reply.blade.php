@@ -15,16 +15,16 @@
                     </form>
                 @endif
             </div>
-            <div>
-                <form method="POST" action="/replies/{{ $reply->id }}/favorites">
-                    {{ csrf_field() }}
-
-                    <button type="submit" class="btn btn-light" {{ $reply->isFavorited() ? 'disabled' : '' }}>
-                        {{ $reply->favorites_count }}
-                        <i class="bi bi-star-fill" style="color: #c9302c"></i>
-                    </button>
-                </form>
-            </div>
+{{--            <div>--}}
+{{--                <form method="POST" action="/replies/{{ $reply->id }}/favorites">--}}
+{{--                    {{ csrf_field() }}--}}
+{{----}}
+{{--                    <button type="submit" class="btn btn-light" {{ $reply->isFavorited() ? 'disabled' : '' }}>--}}
+{{--                        {{ $reply->favorites_count }}--}}
+{{--                        <i class="bi bi-star-fill" style="color: #c9302c"></i>--}}
+{{--                    </button>--}}
+{{--                </form>--}}
+{{--            </div>--}}
         </div>
     </div>
     <div class="card-body">

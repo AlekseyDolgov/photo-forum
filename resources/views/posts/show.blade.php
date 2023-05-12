@@ -8,7 +8,7 @@
                     <div class="card-header">
                         <div class="level">
                             <span class="flex">
-                                <a href="{{ url('/profiles/' . $post->creator->id) }}">{{ $post->creator->name }}</a> опубликовал:
+                                опубликовал: <a href="{{ url('/profiles/' . $post->creator->id) }}">{{ $post->creator->name }}</a><br>
                                 {{ $post->title }}
                             </span>
                             @if(auth()->check() && (auth()->user()->isAdmin() || auth()->user()->id == $post->user_id))
@@ -40,6 +40,7 @@
                                       rows="5"></textarea>
                             <input type="hidden" name="post_id" value="{{$_GET['post']}}">
                             <input type="hidden" name="thread_id" value="0">
+                            <input type="hidden" name="comment_count" value="0">
                         </div>
 
                         <button type="submit" class="btn btn-primary">Добавить</button>
@@ -61,9 +62,8 @@
                 <div class="card mb-3">
                     <div class="card-body">
                         <p>
-                            Тема была опубликована {{ $post->created_at->format('d-m-Y') }} в {{ $post->created_at->format('H:i:s') }}
-                            Опубликовал: <a href="{{ url('/profiles/' . $post->creator->id) }}">{{ $post->creator->name }}</a>.
-                            Сообщений в теме: {{ $post->replies_count }}.
+                            Пост был опубликован {{ $post->created_at->format('d-m-Y') }} в {{ $post->created_at->format('H:i:s') }}
+                            Количество комментариев : {{ $post->comment_count }}.
                         </p>
                     </div>
                 </div>

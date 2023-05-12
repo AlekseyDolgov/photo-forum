@@ -29,7 +29,18 @@ class RepliesController extends Controller
             'thread_id' => request('thread_id')
         ]);
 
-        return back();
+        $post = Post::find(request('post_id'));
+        if ($post->comment_count == 0) {
+            $post->comment_count = 1;
+            $post->save();
+            return back();
+        } else {
+            $post->comment_count++;
+            $post->save();
+            return back();
+        }
+
+
     }
     public function destroy(Reply $reply)
     {

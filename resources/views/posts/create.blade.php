@@ -37,6 +37,7 @@
                             </div>
 
                             <input type="hidden" name="thread_id" value="{{ $_GET['post'] }}">
+                            <input type="hidden" name="comment_count" value="0">
 
                             <div class="form-group mb-3">
                                 <button type="submit" class="btn btn-primary">Опубликовать</button>
