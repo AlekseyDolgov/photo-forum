@@ -29,9 +29,8 @@ Route::get('/', function () {
 */
 
 Route::get('/', [ThreadsController::class, 'index']);
-Route::delete('delete', [ThreadsController::class, 'delete']);
 
-Route::get('threads/create', [ThreadsController::class, 'create']);
+
 Route::get('threads/{channel}/{thread}', [ThreadsController::class, 'show']);
 Route::delete('threads/{channel}/{thread}', [ThreadsController::class, 'destroy']);
 Route::post('threads', [ThreadsController::class, 'store']);
@@ -46,7 +45,7 @@ Route::middleware('auth')->group(function () {
 Route::post('/replies/', [RepliesController::class, 'store']);
 Route::delete('/store/posts/replies/delete/', [RepliesController::class, 'delete']);
 
-Route::post('/replies/{reply}/favorites', [FavoritesController::class, 'store']);
+//Route::post('/replies/{reply}/favorites', [FavoritesController::class, 'store']);
 
 Route::get('/profiles/{id}', function ($id) {
     $profile = Profile::findOrFail($id);
@@ -62,7 +61,9 @@ Route::get('/profiles/{id}', function ($id) {
 
 // Для админов
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+    Route::get('/all-users', [AdminController::class, 'index'])->name('admin');
+    Route::delete('delete', [ThreadsController::class, 'delete']);
+    Route::post('/banned', [AdminController::class, 'banned']);
 });
 
 // Статистика

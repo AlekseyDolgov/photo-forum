@@ -12,9 +12,17 @@
             <!-- Left Side Of Navbar -->
                 @auth
                     @if(Auth::user()->status_prav)
-                        <a class="btn btn-outline-secondary" href="/threads/create">Новая тема</a>
+                        <a class="btn btn-outline-secondary" href="/threads/create">Новая тема  </a>
                     @endif
                 @endauth
+            <a>---</a>
+                @auth
+                    @if(Auth::user()->status_prav)
+                        <a class="btn btn-outline-secondary" href="/all-users">Список пользователей</a>
+                   @endif
+                @endauth
+
+
 
 
 {{--            --}}
