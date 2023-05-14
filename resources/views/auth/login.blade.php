@@ -2,6 +2,12 @@
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
+ <div class="card-body">
+
+     @if (session('message'))
+         <div class="alert alert-danger" style="color: #c9302c">{{ session('message') }}</div>
+     @endif
+
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
@@ -44,4 +50,5 @@
             </x-primary-button>
         </div>
     </form>
+ </div>
 </x-guest-layout>

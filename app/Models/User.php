@@ -25,6 +25,10 @@ class User extends Authenticatable
         'status_prav',
     ];
 
+    protected $dates = [
+        'banned_until'
+    ];
+
     /**
      * The attributes that should be hidden for serialization.
      *
