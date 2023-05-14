@@ -14,18 +14,18 @@ class Thread extends Model
 
     /* Активная загрузка (eager loading)  */
 
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::addGlobalScope('replyCount', function ($builder) {
-            $builder->withCount('replies');
-        });
-
-        static::deleting(function ($thread) {
-            $thread->replies()->delete();
-        });
-    }
+//    protected static function boot()
+//    {
+//        parent::boot();
+//
+//        static::addGlobalScope('replyCount', function ($builder) {
+//            $builder->withCount('replies');
+//        });
+//
+//        static::deleting(function ($thread) {
+//            $thread->replies()->delete();
+//        });
+//    }
 
     public function path()
     {
@@ -37,10 +37,7 @@ class Thread extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function channel()
-    {
-        return $this->belongsTo(Channel::class);
-    }
+
 
     public function replies()
     {

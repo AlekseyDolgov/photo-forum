@@ -31,10 +31,7 @@ Route::get('/', function () {
 Route::get('/', [ThreadsController::class, 'index']);
 
 
-Route::get('threads/{channel}/{thread}', [ThreadsController::class, 'show']);
-Route::delete('threads/{channel}/{thread}', [ThreadsController::class, 'destroy']);
-Route::post('threads', [ThreadsController::class, 'store']);
-Route::get('threads/{channel}', [ThreadsController::class, 'index']);
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -64,10 +61,15 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/all-users', [AdminController::class, 'index'])->name('admin');
     Route::delete('delete', [ThreadsController::class, 'delete']);
     Route::post('/banned', [AdminController::class, 'banned']);
+    Route::get('threads/create', [ThreadsController::class, 'create']);
+    Route::get('threads/{channel}/{thread}', [ThreadsController::class, 'show']);
+    Route::delete('threads/{channel}/{thread}', [ThreadsController::class, 'destroy']);
+    Route::post('threads', [ThreadsController::class, 'store']);
+    Route::get('threads/{channel}', [ThreadsController::class, 'index']);
 });
 
 // Статистика
-Route::get('/statistics/{user_id}', [StatisticController::class, 'index']);
+//Route::get('/statistics/{user_id}', [StatisticController::class, 'index']);
 
 // Посты
 //Route::any('/posts/{channel}', [PostsController::class, 'index']);
